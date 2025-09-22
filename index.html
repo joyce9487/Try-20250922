@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>專屬正念冥想引導</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0"
+  }
+}
+</script>
+<style>
+  .sand-top {
+    transform-origin: 50px 15px;
+  }
+  .sand-bottom {
+    transform: scaleY(0);
+    transform-origin: 50px 135px;
+  }
+  .sand-stream {
+      opacity: 0;
+  }
+
+  .sand-container.playing .sand-top {
+    animation-name: empty-top;
+    animation-duration: var(--duration);
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+  .sand-container.playing .sand-bottom {
+    animation-name: fill-bottom;
+    animation-duration: var(--duration);
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+  .sand-container.playing .sand-stream {
+    animation-name: stream;
+    animation-duration: var(--duration);
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+  .sand-container.paused * {
+      animation-play-state: paused;
+  }
+  
+  @keyframes empty-top {
+    from { transform: scaleY(1); }
+    to { transform: scaleY(0); }
+  }
+
+  @keyframes fill-bottom {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+  }
+
+  @keyframes stream {
+      0% { opacity: 1; }
+      99% { opacity: 1; }
+      100% { opacity: 0; }
+  }
+</style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900">
+  <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
